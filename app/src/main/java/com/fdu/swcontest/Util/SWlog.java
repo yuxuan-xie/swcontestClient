@@ -1,4 +1,4 @@
-package com.fronzii.swcontest.Util;
+package com.fdu.swcontest.Util;
 
 import android.util.Log;
 

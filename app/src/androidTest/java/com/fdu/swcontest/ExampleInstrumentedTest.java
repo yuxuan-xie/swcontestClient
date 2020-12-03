@@ -1,4 +1,4 @@
-package com.fronzii.swcontest;
+package com.fdu.swcontest;
 
 import android.content.Context;
 

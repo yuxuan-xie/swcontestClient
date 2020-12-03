@@ -1,16 +1,18 @@
-package com.fronzii.swcontest.Hooks;
+package com.fdu.swcontest.Hooks;
 
-import com.fronzii.swcontest.Util.SWlog;
+import android.content.Context;
+
+import com.fdu.swcontest.Util.SWlog;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-import static com.fronzii.swcontest.Main.TAG;
+import static com.fdu.swcontest.Main.TAG;
 
 public class HookTemplate extends AbstractHook{
     public Class<?> c1, c2,c3,c4;
-    public String className = "";
-    public String methodName = "";
+    private String className = "";
+    private String methodName = "";
 
     @Override
     public void doHook() {
@@ -40,4 +42,7 @@ public class HookTemplate extends AbstractHook{
     public void setClassLoader(ClassLoader classLoader) {
         this.classloader = classLoader;
     }
+
+    @Override
+    public void setContext(Context context) {this.hookContext = context; }
 }

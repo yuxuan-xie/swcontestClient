@@ -8,12 +8,12 @@ public class SWDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "fdusw.db";
 
-    public static final String API_SEQUENCE = "api";
-    public static final String TEST = "test";
+    static final String API_SEQUENCE = "api";
+    static final String TEST = "test";
 
     private static final int DATABASE_VERSION = 1;
 
-    public SWDBHelper(Context context){
+    SWDBHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -25,6 +25,5 @@ public class SWDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
     }
 }

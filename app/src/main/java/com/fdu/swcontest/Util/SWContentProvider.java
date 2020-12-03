@@ -35,10 +35,6 @@ public class SWContentProvider extends ContentProvider {
         context = getContext();
         myDBHelper = new SWDBHelper(getContext());
         db = myDBHelper.getWritableDatabase();
-        db.execSQL("delete from api");
-        // for test
-        db.execSQL("delete from test");
-        db.execSQL("insert into test values(1, 'test');");
         return true;
     }
 

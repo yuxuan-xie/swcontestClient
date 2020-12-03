@@ -33,18 +33,9 @@ public class TestHook extends AbstractHook{
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         try {
                             ContentResolver contentResolver = hookContext.getContentResolver();
-
                             ContentValues contentValues = new ContentValues();
-                            contentValues.put("_id", 2);
-                            contentValues.put("comment", hookContext.getPackageName());
+                            contentValues.put("comment", String.valueOf(System.currentTimeMillis()));
                             contentResolver.insert(uri_test, contentValues);
-
-                            Cursor cursor = contentResolver.query(uri_test, new String[]{"_id", "comment"}, null, null, null);
-                            assert cursor != null;
-                            while (cursor.moveToNext()) {
-                                SWlog.d("id:" + cursor.getInt(0) + " comment:" + cursor.getString(1));
-                            }
-                            cursor.close();
                         }catch(Exception e){
                             SWlog.e(TAG, e);
                         }

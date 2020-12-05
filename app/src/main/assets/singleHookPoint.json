@@ -1,8 +1,8 @@
 {
   "api": {
-    "1002":
-      ["android.content.ContextWrapper.bindService(android.content.Intent,int,java.util.concurrent.Executor,android.content.ServiceConnection)",
-        "android.content.ContextWrapper.bindService(android.content.Intent,android.content.ServiceConnection,int)"
+    "1002":[
+      "android.content.ContextWrapper.bindService(android.content.Intent,int,java.util.concurrent.Executor,android.content.ServiceConnection)",
+      "android.content.ContextWrapper.bindService(android.content.Intent,android.content.ServiceConnection,int)"
         ],
     "1005": [
       "android.app.Activity.finish()",
@@ -54,7 +54,7 @@
     ],
     "3004": [
       "android.app.admin.DevicePolicyManager.lockNow()",
-      "android.app.admin.DevicePolicyManager.locakNow(int)"
+      "android.app.admin.DevicePolicyManager.lockNow(int)"
     ],
     "3005": [
       "android.app.admin.DevicePolicyManager.wipeData(int,java.lang.CharSequence)",

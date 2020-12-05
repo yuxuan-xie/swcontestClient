@@ -41,6 +41,7 @@ public class Main implements IXposedHookLoadPackage {
                             try {
                                 String hookJsonStr = JsonUtils.getJson("singleHookPoint.json");
                                 singleHookPoint = JsonUtils.jsonToObject(hookJsonStr, SingleHookPoint.class);
+//                                singleHookPoint.print();
                             }catch(Exception e){
                                 SWlog.e(TAG, e);
                             }

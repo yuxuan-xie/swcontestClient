@@ -2,6 +2,7 @@ package com.fdu.swcontest.Util;
 
 import android.util.Log;
 
+
 public class SWlog {
     private static boolean ENABLE = true;
     private static String tag = "SWContest";
@@ -39,6 +40,13 @@ public class SWlog {
             return;
         }
         Log.e(tag, msg, t);
+    }
+
+    public static void e(Throwable t){
+        if(!ENABLE){
+            return;
+        }
+        Log.e(tag,"", t);
     }
 
     public static void e(String tag, Throwable t){

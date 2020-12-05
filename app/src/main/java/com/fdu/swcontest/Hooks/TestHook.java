@@ -11,6 +11,7 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 import static com.fdu.swcontest.Main.TAG;
+import static com.fdu.swcontest.Main.singleHookPoint;
 
 public class TestHook extends AbstractHook{
     public Class<?> c1, c2,c3,c4;
@@ -31,6 +32,7 @@ public class TestHook extends AbstractHook{
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        singleHookPoint.print();
                         try {
                             ContentResolver contentResolver = hookContext.getContentResolver();
                             ContentValues contentValues = new ContentValues();
@@ -53,6 +55,14 @@ public class TestHook extends AbstractHook{
     }
 
     @Override
-    public void setContext(Context context) {this.hookContext = context; };
+    public void setContext(Context context) {this.hookContext = context;}
+
+    @Override
+    public void setMethodId(int methodId) {this.methodId = methodId;}
+
+    @Override
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 
 }

@@ -1,0 +1,72 @@
+{
+  "api": {
+    "1002":
+      ["android.content.ContextWrapper.bindService(android.content.Intent,int,java.util.concurrent.Executor,android.content.ServiceConnection)",
+        "android.content.ContextWrapper.bindService(android.content.Intent,android.content.ServiceConnection,int)"
+        ],
+    "1005": [
+      "android.app.Activity.finish()",
+      "android.app.Activity.finishActivity(int)"
+    ],
+    "1006": [
+      "android.app.ActivityManager.getAppTasks()"
+    ],
+    "1007": [
+      "android.app.ActivityManager.getProcessMemoryInfo(int[])"
+    ],
+    "1008": [
+      "android.app.ActivityManager.getProcessesInErrorState()"
+    ],
+    "1009": [
+      "android.app.ActivityManager.killBackgroundProcesses(java.lang.String)"
+    ],
+    "1010": [
+      "android.app.ActivityManager.moveTaskToFront(int,int,android.os.Bundle)",
+      "android.app.ActivityManager.moveTaskToFront(int,int)"
+    ],
+    "1011": [
+      "android.app.Activity.navigateUpTo(android.content.Intent)"
+    ],
+    "1012": [
+      "android.app.Activity.setRequestedOrientation(int)"
+    ],
+    "1013": [
+      "android.app.Activity.startActivities(android.content.Intent[])",
+      "android.app.Activity.startActivities(android.content.Intent[],android.os.Bundle)"
+    ],
+    "1014": [
+      "android.content.ContextWrapper.unbindService(android.content.ServiceConnection)"
+    ],
+    "1015": [
+      "android.content.ContextWrapper.unregisterReceiver(android.content.BroadcastReceiver)"
+    ],
+    "1016": [
+      "android.content.res.Resources.updateConfiguration(android.content.res.Configuration,android.util.DisplayMetrics)"
+    ],
+    "3001": [
+      "android.app.admin.DevicePolicyManager.createAndManagerUser(android.content.ComponentName,java.lang.String,android.content.ComponentName,android.os.PersistableBundle,int)"
+    ],
+    "3002": [
+      "android.app.admin.DevicePolicyManager.removeActiveAdmin(android.content.ComponentName)"
+    ],
+    "3003": [
+      "android.app.admin.DevicePolicyManager.resetPassword (java.lang.String,int)"
+    ],
+    "3004": [
+      "android.app.admin.DevicePolicyManager.lockNow()",
+      "android.app.admin.DevicePolicyManager.locakNow(int)"
+    ],
+    "3005": [
+      "android.app.admin.DevicePolicyManager.wipeData(int,java.lang.CharSequence)",
+      "android.app.admin.DevicePolicyManager.wipeData(int)"
+    ],
+    "4006": [
+      "android.app.StatusBarManager.section(java.lang.String,int,int,java.lang.String)"
+    ],
+    "5001": [
+      "android.app.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)",
+      "android.app.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.location.Criteria,android.location.LocationListener,android.os.Looper)",
+      "android.app.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)"
+    ]
+  }
+}

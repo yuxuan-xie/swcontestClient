@@ -79,8 +79,7 @@
     ],
     "5005": [
       "android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus.Callback)",
-      "android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus.Callback,android.os.Handler)",
-      "android.location.LocationManager.registerGnssStatusCallback(java.util.concurrent.Executor,android.location.GnssStatus.Callback)"
+      "android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus.Callback,android.os.Handler)"
     ],
     "5006": [
       "android.location.LocationManager.removeUpdates(LocationListener,PendingIntent)"

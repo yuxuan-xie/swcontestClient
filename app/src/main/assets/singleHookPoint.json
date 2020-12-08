@@ -82,7 +82,8 @@
       "android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus.Callback,android.os.Handler)"
     ],
     "5006": [
-      "android.location.LocationManager.removeUpdates(LocationListener,PendingIntent)"
+      "android.location.LocationManager.removeUpdates(android.location.LocationListener)",
+      "android.location.LocationManager.removeUpdates(android.app.PendingIntent)"
     ],
     "5007": [
       "android.location.LocationManager.sendExtraCommand(java.lang.String,java.lang.String,android.os.Bundle)"
@@ -105,7 +106,7 @@
     ],
     "6007": [
       "android.media.AudioManager.requestAudioFocus(android.media.AudioFocusRequest)",
-      "android.media.AudioManager.requestAudioFocus(AudioManager.android.media.AudioManager.OnAudioFocusChangeListener,int,int)"
+      "android.media.AudioManager.requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener,int,int)"
     ],
     "6008": [
       "android.media.AudioManager.setMode(int)"
@@ -118,15 +119,6 @@
     ],
     "6013": [
       "android.media.AudioManager.setRingerMode(int)"
-    ],
-    "7001": [
-      "android.content.pm.PackageManager.addPreferredActivity(android.content.IntentFilter,int,android.content.ComponentName[],android.content.ComponentName)"
-    ],
-    "7002": [
-      "android.content.pm.PackageManager.clearPackagePreferredActivities(java.lang.String)"
-    ],
-    "7003": [
-      "android.content.pm.PackageManager.setApplicationEnabledSetting(java.lang.String,int,int)"
     ],
     "7006": [
       "android.app.KeyguardManager.KeyguardLock.disableKeyguard()"
@@ -171,9 +163,6 @@
       "android.content.pm.PackageInstaller.uninstall(android.content.pm.VersionedPackage,android.content.IntentSender)",
       "android.content.pm.PackageInstaller.uninstall(java.lang.String,android.content.IntentSender)"
     ],
-    "12001": [
-      "android.content.pm.PackageManager.getInstalledPackages(int)"
-    ],
     "14005": [
       "android.telephony.SmsManager.sendDataMessage(java.lang.String,java.lang.String,short,byte[],android.app.PendingIntent,android.app.PendingIntent)"
     ],
@@ -181,8 +170,7 @@
       "android.telephony.SmsManager.sendDataMessageWithSelfPermissions(java.lang.String,java.lang.String,short,byte[],android.app.PendingIntent,android.app.PendingIntent)"
     ],
     "14007": [
-      "android.telephony.SmsManager.sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)",
-      "android.telephony.SmsManager.sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent,long)"
+      "android.telephony.SmsManager.sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)"
     ],
     "14008": [
       "android.telephony.SmsManager.sendTextMessageWithSelfPermissions(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent,boolean)"
@@ -191,7 +179,7 @@
       "android.telephony.SmsManager.injectSmsPdu(byte[],java.lang.String,android.app.PendingIntent)"
     ],
     "14010": [
-      "android.telephony.SmsManager.sendMultipartTextMessageInternal(java.lang.String,java.lang.String,List<java.lang.String>,List<android.app.PendingIntent>,List<android.app.PendingIntent>,boolean,int,boolean,int)"
+      "android.telephony.SmsManager.sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)"
     ],
     "14013": [
       "android.telephony.SmsManager.enableCellBroadcastRange(int,int,int)"
@@ -213,10 +201,10 @@
       "android.telephony.SmsManager.isSMSPromptEnabled()"
     ],
     "14020": [
-      "android.telephony.SmsManager.sendStoredTextMessage(Uri,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)"
+      "android.telephony.SmsManager.sendStoredTextMessage(android.net.Uri,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)"
     ],
     "14021": [
-      "android.telephony.SmsManager.sendStoredMultipartTextMessage(Uri,java.lang.String,ArrayList<android.app.PendingIntent>,ArrayList<android.app.PendingIntent>)"
+      "android.telephony.SmsManager.sendStoredMultipartTextMessage(android.net.Uri,java.lang.String,java.util.ArrayList,java.util.ArrayList)"
     ],
     "14022": [
       "android.telephony.SmsManager.createAppSpecificSmsToken(android.app.PendingIntent)"
@@ -273,7 +261,7 @@
     "18003": [
       "android.telephony.TelephonyManager.answerRingingCall()",
       "android.telecom.TelecomManager.acceptRingingCall()",
-      "android.telecom.TelecomManager.voidacceptRingingCall(int)"
+      "android.telecom.TelecomManager.acceptRingingCall(int)"
     ],
     "18004": [
       "android.telephony.TelephonyManager.silenceRinger()",
@@ -284,7 +272,7 @@
     ],
     "19002": [
       "android.webkit.WebView.loadUrl(java.lang.String)",
-      "android.webkit.WebView.loadUrl(java.lang.String,Map<java.lang.String,java.lang.String>)"
+      "android.webkit.WebView.loadUrl(java.lang.String,java.util.Map)"
     ],
     "20001": [
       "android.accounts.AccountManager.getAccounts()"
@@ -294,14 +282,14 @@
     ],
     "20003": [
       "android.hardware.display.DisplayManager.createVirtualDisplay(java.lang.String,int,int,int,android.view.Surface,int)",
-      "android.hardware.display.DisplayManager.createVirtualDisplay(java.lang.String,int,int,int,android.view.Surface,int,android.hardware.display.VirtualDisplay.android.hardware.display.VirtualDisplay.Callback,android.os.Handler)"
+      "android.hardware.display.DisplayManager.createVirtualDisplay(java.lang.String,int,int,int,android.view.Surface,int,android.hardware.display.VirtualDisplay.Callback,android.os.Handler)"
     ],
     "20004": [
-      "android.hardware.Camera.takePicture(Camera.android.hardware.Camera.ShutterCallback,Camera.android.hardware.Camera.PictureCallback,Camera.android.hardware.Camera.PictureCallback,Camera.android.hardware.Camera.PictureCallback)",
-      "android.hardware.camera2.CameraCaptureSessionImpl.capture(CaptureRequest,CameraCaptureSession.CaptureCallback,Handler)",
-      "android.hardware.camera2.CameraCaptureSessionImpl.captureSingleRequest(CaptureRequest,Executor,CameraCaptureSession.CaptureCallback)",
-      "android.hardware.camera2.CameraCaptureSessionImpl.captureBurst(List<CaptureRequest>,CameraCaptureSession.CaptureCallback,Handler)",
-      "android.hardware.camera2.CameraCaptureSessionImpl.captureBurstRequests(List<CaptureRequest>,Executor,CameraCaptureSession.CaptureCallback)"
+      "android.hardware.Camera.takePicture(android.hardware.Camera.ShutterCallback,android.hardware.Camera.PictureCallback,android.hardware.Camera.PictureCallback,android.hardware.Camera.PictureCallback)",
+      "android.hardware.camera2.CameraCaptureSessionImpl.capture(android.hardware.camera2.CaptureRequest,android.hardware.camera2.CameraCaptureSession.CaptureCallback,android.os.Handler)",
+      "android.hardware.camera2.CameraCaptureSessionImpl.captureSingleRequest(android.hardware.camera2.CaptureRequest,java.util.concurrent.Executor,android.hardware.camera2.CameraCaptureSession.CaptureCallback)",
+      "android.hardware.camera2.CameraCaptureSessionImpl.captureBurst(java.util.ArrayList,android.hardware.camera2.CameraCaptureSession.CaptureCallback,android.os.Handler)",
+      "android.hardware.camera2.CameraCaptureSessionImpl.captureBurstRequests(java.util.ArrayList,java.util.concurrent.Executor,android.hardware.camera2.CameraCaptureSession.CaptureCallback)"
     ],
     "20005": [
       "android.hardware.Camera.stopPreview()",
@@ -328,10 +316,10 @@
       "android.os.PowerManager.newWakeLock(int,java.lang.String)"
     ],
     "23001": [
-      "android.app.DownloadManager.query(DownloadManager.android.app.DownloadManager.Query)"
+      "android.app.DownloadManager.query(android.app.DownloadManager.Query)"
     ],
     "23002": [
-      "android.app.DownloadManager.enqueue(DownloadManager.Request)"
+      "android.app.DownloadManager.enqueue(android.app.DownloadManager.Request)"
     ],
     "24001": [
       "android.app.usage.UsageStatsManager.queryUsageStats(int,long,long)"

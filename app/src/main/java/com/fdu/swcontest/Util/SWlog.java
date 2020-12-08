@@ -3,6 +3,7 @@ package com.fdu.swcontest.Util;
 import android.util.Log;
 
 
+
 public class SWlog {
     private static boolean ENABLE = true;
     private static String tag = "SWContest";

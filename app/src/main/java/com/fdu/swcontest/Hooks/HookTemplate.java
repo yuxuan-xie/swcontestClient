@@ -34,7 +34,7 @@ public class HookTemplate extends AbstractHook {
         };
 
         try {
-            SWlog.d("Handling:" + this.signature);
+            SWlog.d("Handling:" + "[" + this.methodId + "]" + this.signature);
             ParseSignature.MethodX methodX = ParseSignature.getMethodX(this.signature);
             hookclass = classloader.loadClass(methodX.methodClass);
             int tmpLen = methodX.methodParams.size() + 1;
@@ -44,7 +44,7 @@ public class HookTemplate extends AbstractHook {
             }
             parameterTypesAndCallback[tmpLen - 1] = methodHook;
             XposedHelpers.findAndHookMethod(hookclass, methodX.methodName, parameterTypesAndCallback);
-            SWlog.d("Registered:" + this.signature);
+            SWlog.d("Registered:" + "[" + this.methodId + "]" + this.signature);
         } catch (Exception e) {
             SWlog.e("Fail to find xxx.xxx.xxx", e);
         }

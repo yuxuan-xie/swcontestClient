@@ -19,7 +19,7 @@ public class SWDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " + API_SEQUENCE + "(_id INTEGER PRIMARY KEY AUTOINCREMENT," + " packagename TEXT," + " sequence TEXT)");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " + API_SEQUENCE + "(_id INTEGER PRIMARY KEY AUTOINCREMENT," + " packagename TEXT," + " sequence TEXT," + " sequence_length INTEGER" + ")");
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " + TEST + "(_id INTEGER PRIMARY KEY AUTOINCREMENT," + " comment TEXT)");
     }
 

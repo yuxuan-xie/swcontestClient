@@ -24,16 +24,6 @@ public class MainActivity extends AppCompatActivity {
         ContentObserver contentObserver = new SWContentObserver(this);
         ContentResolver contentResolver = getContentResolver();
         contentResolver.registerContentObserver(AbstractHook.uri_test, true, contentObserver);
-
-        try {
-            SWlog.d("1");
-            Class clazz = Class.forName("android.location.LocationManager");
-            SWlog.d("2");
-            Method method = clazz.getDeclaredMethod("requestLocationUpdates", String.class, long.class, float.class,
-                    Class.forName("android.location.Criteria"), Class.forName("android.location.LocationListener"), Class.forName("android.os.Looper"));
-            SWlog.d(String.valueOf(method));
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            SWlog.e(e);
-        }
+        
     }
 }

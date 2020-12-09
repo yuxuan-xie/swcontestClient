@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.fdu.swcontest.Hooks.AbstractHook;
+import com.fdu.swcontest.Hooks.HookAbstractMethods;
+import com.fdu.swcontest.Hooks.HookStartActivity;
 import com.fdu.swcontest.Hooks.HookTemplate;
 import com.fdu.swcontest.Hooks.SingleHookPoint;
 import com.fdu.swcontest.Hooks.TestHook;
@@ -59,6 +61,16 @@ public class Main implements IXposedHookLoadPackage {
                                 }
 
                             }
+
+                            myHook = new HookAbstractMethods();
+                            myHook.setClassLoader(cl);
+                            myHook.setContext(context);
+                            myHook.doHook();
+
+                            myHook = new HookStartActivity();
+                            myHook.setClassLoader(cl);
+                            myHook.setContext(context);
+                            myHook.doHook();
                         }
                     });
         }

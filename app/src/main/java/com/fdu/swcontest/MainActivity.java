@@ -24,6 +24,5 @@ public class MainActivity extends AppCompatActivity {
         ContentObserver contentObserver = new SWContentObserver(this);
         ContentResolver contentResolver = getContentResolver();
         contentResolver.registerContentObserver(AbstractHook.uri_test, true, contentObserver);
-        
     }
 }

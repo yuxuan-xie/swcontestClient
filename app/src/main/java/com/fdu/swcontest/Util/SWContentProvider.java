@@ -38,10 +38,19 @@ public class SWContentProvider extends ContentProvider {
         return true;
     }
 
+    /*
+    * query
+    * @param uri the uri to query
+    * @param projection query columns
+    * @param selection query condition
+    * @param selectionArgs query condition Args
+    * @param sortOrder
+    * @return
+    * */
     @Nullable
     @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
-        return db.query(getTableName(uri), strings, s, strings1, null, null, s1, null);
+    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+        return db.query(getTableName(uri), projection, selection, selectionArgs, null, null, sortOrder, null);
     }
 
     @Nullable
@@ -64,8 +73,19 @@ public class SWContentProvider extends ContentProvider {
         return 0;
     }
 
+
+    /*
+    * update
+    * @param uri the uri to update
+    * @param contentValues
+    * @param selection query condition
+    * @param selectionArgs condition args
+    * */
     @Override
-    public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
+    public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String selection, @Nullable String[] selectionArgs) {
+        db.update(getTableName(uri), contentValues, selection, selectionArgs);
+        context.getContentResolver().notifyChange(uri, null);
+
         return 0;
     }
 

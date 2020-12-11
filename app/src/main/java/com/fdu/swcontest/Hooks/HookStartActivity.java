@@ -41,13 +41,9 @@ public class HookStartActivity extends AbstractHook{
         SWlog.d("Registered:[1001]");
     }
 
-    @Override
-    public void setClassLoader(ClassLoader classLoader) {
-        this.classloader = classLoader;
-    }
 
     @Override
-    public void setContext(Context context) {this.hookContext = context;}
+    public void setContext(Context context) {this.hookContext = context; this.classloader = context.getClassLoader();}
 
     @Override
     public void setMethodId(int methodId) {this.methodId = methodId;}

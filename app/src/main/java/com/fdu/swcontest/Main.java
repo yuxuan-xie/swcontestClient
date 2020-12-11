@@ -53,7 +53,6 @@ public class Main implements IXposedHookLoadPackage {
                             for(Map.Entry<String, List<String>> entry : singleHookPoint.api.entrySet()){
                                 for(String each : entry.getValue()){
                                     myHook = new HookTemplate();
-                                    myHook.setClassLoader(cl);
                                     myHook.setContext(context);
                                     myHook.setMethodId(Integer.parseInt(entry.getKey()));
                                     myHook.setSignature(each);
@@ -63,12 +62,10 @@ public class Main implements IXposedHookLoadPackage {
                             }
 
                             myHook = new HookAbstractMethods();
-                            myHook.setClassLoader(cl);
                             myHook.setContext(context);
                             myHook.doHook();
 
                             myHook = new HookStartActivity();
-                            myHook.setClassLoader(cl);
                             myHook.setContext(context);
                             myHook.doHook();
                         }

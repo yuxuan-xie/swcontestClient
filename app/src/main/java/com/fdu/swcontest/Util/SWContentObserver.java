@@ -18,11 +18,11 @@ public class SWContentObserver extends ContentObserver {
 
     public void onChange(final boolean selfChange){
         ContentResolver contentResolver = this.myContext.getContentResolver();
-        Cursor cursor = contentResolver.query(AbstractHook.uri_test, new String[]{"_id", "comment"}, null, null, null);
+        Cursor cursor = contentResolver.query(AbstractHook.uri_sequence, new String[]{"_id", "packagename", "sequence", "sequence_length"}, null, null, null);
         assert cursor != null;
         SWlog.d("**************DB CHANGED**************");
         while(cursor.moveToNext()){
-            SWlog.d("id:" + cursor.getInt(0) + " comment:" + cursor.getString(1));
+            SWlog.d("_id:" + cursor.getString(0) + " packagename:" + cursor.getString(1) + " sequence:" + cursor.getString(2) + " sequence_length:" + cursor.getInt(3));
         }
         cursor.close();
     }

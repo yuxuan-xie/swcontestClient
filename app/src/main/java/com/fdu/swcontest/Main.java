@@ -8,7 +8,6 @@ import com.fdu.swcontest.Hooks.HookAbstractMethods;
 import com.fdu.swcontest.Hooks.HookStartActivity;
 import com.fdu.swcontest.Hooks.HookTemplate;
 import com.fdu.swcontest.Hooks.SingleHookPoint;
-import com.fdu.swcontest.Hooks.TestHook;
 import com.fdu.swcontest.Util.JsonUtils;
 import com.fdu.swcontest.Util.SWlog;
 

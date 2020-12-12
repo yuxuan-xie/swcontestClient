@@ -38,10 +38,10 @@ public class AbandonedHookTemplate extends AbstractHook{
                 });
     }
 
-    @Override
-    public void setClassLoader(ClassLoader classLoader) {
-        this.classloader = classLoader;
-    }
+//    @Override
+//    public void setClassLoader(ClassLoader classLoader) {
+//        this.classloader = classLoader;
+//    }
 
     @Override
     public void setContext(Context context) {this.hookContext = context;}

@@ -44,7 +44,7 @@ public class AbandonedHookTemplate extends AbstractHook{
 //    }
 
     @Override
-    public void setContext(Context context) {this.hookContext = context;}
+    public void setContext(Context context) {this.hookContext = context; this.classloader = context.getClassLoader();}
 
     @Override
     public void setMethodId(int methodId) {this.methodId = methodId;}

@@ -27,8 +27,7 @@ public class ApkUtils {
         List<SWAppInfo> appInfos = new ArrayList<SWAppInfo>();
         try{
             List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
-            for(int i = 0; i < packageInfos.size(); i++){
-                PackageInfo packageInfo = packageInfos.get(i);
+            for(PackageInfo packageInfo : packageInfos){
                 SWAppInfo swAppInfo = new SWAppInfo();
                 swAppInfo.appName = packageInfo.packageName;
                 if(packageInfo.applicationInfo.loadIcon(packageManager) == null){

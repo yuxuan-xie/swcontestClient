@@ -1,6 +1,9 @@
 package com.fdu.swcontest.Hooks;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 
 public abstract class AbstractHook {
@@ -9,12 +12,43 @@ public abstract class AbstractHook {
     Context hookContext;
     int methodId;
     String signature;
-    static public String SPLITTER = ",";
-    static public Uri uri_test = Uri.parse("content://com.fdu.swcontentprovider/test");
-    static public Uri uri_sequence = Uri.parse("content://com.fdu.swcontentprovider/api");
+    public static String Splitter = ",";
+    public static Uri uri_test = Uri.parse("content://com.fdu.swcontentprovider/test");
+    public static Uri uri_sequence = Uri.parse("content://com.fdu.swcontentprovider/api");
 
-    public abstract void doHook();
-    public abstract void setContext(Context context);
-    public abstract void setMethodId(int methodId);
-    public abstract void setSignature(String signature);
+    public abstract void doHook() throws ClassNotFoundException;
+    public void setContext(Context context) {this.hookContext = context;}
+    public void setMethodId(int methodId) {this.methodId = methodId;}
+    public void setSignature(String signature) {this.signature = signature;}
+    public void updateDB(){
+        String packageName = hookContext.getPackageName();
+        String sequence = "";
+        int sequence_length = 0;
+
+        ContentResolver contentResolver = hookContext.getContentResolver();
+        Cursor cursor = contentResolver.query(uri_sequence, new String[]{"_id", "packagename", "sequence", "sequence_length"}, "packagename=?",
+                new String[]{packageName}, null);
+        assert cursor != null;
+        if(cursor.isAfterLast()) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("packagename", packageName);
+            contentValues.put("sequence", "");
+            contentValues.put("sequence_length", 0);
+            contentResolver.insert(uri_sequence, contentValues);
+
+        }else{
+            cursor.moveToNext();
+            sequence = cursor.getString(2);
+            sequence_length = cursor.getInt(3);
+            cursor.close();
+        }
+        ContentValues contentValues = new ContentValues();
+        if(sequence.equals("")){
+            contentValues.put("sequence", methodId);
+        }else{
+            contentValues.put("sequence", sequence + Splitter + methodId);
+        }
+        contentValues.put("sequence_length", sequence_length + 1);
+        contentResolver.update(uri_sequence, contentValues, "packagename=?", new String[]{packageName});
+    }
 }

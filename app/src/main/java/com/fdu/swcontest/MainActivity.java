@@ -2,7 +2,9 @@ package com.fdu.swcontest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.os.Bundle;
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         ContentObserver contentObserver = new SWContentObserver(this);
         ContentResolver contentResolver = getContentResolver();
         contentResolver.registerContentObserver(AbstractHook.uri_sequence, true, contentObserver);
-
 
         List<ApkUtils.SWAppInfo> appInfos = ApkUtils.scan(getApplicationContext());
         String[] nItems = new String[appInfos.size()];

@@ -6,6 +6,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.fdu.swcontest.Main;
+
+import java.util.Objects;
+
 public abstract class AbstractHook {
     ClassLoader classloader;
     Class<?> hookclass;
@@ -17,7 +21,7 @@ public abstract class AbstractHook {
     public static Uri uri_sequence = Uri.parse("content://com.fdu.swcontentprovider/api");
 
     public abstract void doHook() throws ClassNotFoundException;
-    public void setContext(Context context) {this.hookContext = context;}
+    public void setContext(Context context) {this.hookContext = context; this.classloader = context.getClassLoader();}
     public void setMethodId(int methodId) {this.methodId = methodId;}
     public void setSignature(String signature) {this.signature = signature;}
     public void updateDB(){
@@ -43,6 +47,7 @@ public abstract class AbstractHook {
             cursor.close();
         }
         ContentValues contentValues = new ContentValues();
+        methodId = Integer.parseInt(Objects.requireNonNull(Main.sWencoding.encoding.get(String.valueOf(methodId))));
         if(sequence.equals("")){
             contentValues.put("sequence", methodId);
         }else{

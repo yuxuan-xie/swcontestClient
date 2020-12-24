@@ -1,5 +1,6 @@
 package com.fdu.swcontest.Hooks;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.provider.Settings;
 
@@ -20,7 +21,6 @@ public class HookGetString extends AbstractHook{
         try {
             className = "";
             methodName = "getString";
-            hookclass = classloader.loadClass(className);
         } catch (Exception e) {
             SWlog.e(TAG,"fail to find xxx.xxx.xxx", e);
             return;
@@ -32,20 +32,32 @@ public class HookGetString extends AbstractHook{
                 super.beforeHookedMethod(param);
 
                 String arg = (String)param.args[0];
+                if(arg.equals("android_id")){
+                    methodId = 20011;
+
+                    SWlog.d("methodId: " + methodId);
+                    updateDB();
+                }
 
             }
         };
 
         SWlog.d("Handling:[20011]");
-        XposedHelpers.findAndHookMethod(Settings.System.class, methodName, String.class, xc_methodHook);
-        XposedHelpers.findAndHookMethod(Settings.Secure.class, methodName, String.class, xc_methodHook);
-        XposedHelpers.findAndHookMethod(Settings.Global.class, methodName, String.class, xc_methodHook);
+        XposedHelpers.findAndHookMethod(Settings.System.class, methodName, ContentResolver.class, String.class, xc_methodHook);
+        XposedHelpers.findAndHookMethod(Settings.Secure.class, methodName, ContentResolver.class, String.class, xc_methodHook);
+        XposedHelpers.findAndHookMethod(Settings.Global.class, methodName, ContentResolver.class, String.class, xc_methodHook);
         SWlog.d("Registered:[20011]");
 
         XC_MethodHook xcMethodHook2 = new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
+                String arg = (String)param.args[0];
+                if(arg.equals("ro.serialno")){
+                    methodId = 20012;
+                    SWlog.d("methodId: " + methodId);
+                    updateDB();
+                }
             }
         };
 

@@ -21,7 +21,6 @@ public class HookPutInt extends AbstractHook{
         try {
             className = "";
             methodName = "putInt";
-            hookclass = classloader.loadClass(className);
         } catch (Exception e) {
             SWlog.e(TAG,"fail to find xxx.xxx.xxx", e);
             return;

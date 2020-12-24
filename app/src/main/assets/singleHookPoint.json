@@ -8,9 +8,6 @@
       "android.app.Activity.finish()",
       "android.app.Activity.finishActivity(int)"
     ],
-    "1006": [
-      "android.app.ActivityManager.getAppTasks()"
-    ],
     "1007": [
       "android.app.ActivityManager.getProcessMemoryInfo(int[])"
     ],
@@ -20,34 +17,11 @@
     "1009": [
       "android.app.ActivityManager.killBackgroundProcesses(java.lang.String)"
     ],
-    "1010": [
-      "android.app.ActivityManager.moveTaskToFront(int,int,android.os.Bundle)",
-      "android.app.ActivityManager.moveTaskToFront(int,int)"
-    ],
-    "1011": [
-      "android.app.Activity.navigateUpTo(android.content.Intent)"
-    ],
-    "1012": [
-      "android.app.Activity.setRequestedOrientation(int)"
-    ],
-    "1013": [
-      "android.app.Activity.startActivities(android.content.Intent[])",
-      "android.app.Activity.startActivities(android.content.Intent[],android.os.Bundle)"
-    ],
     "1014": [
       "android.content.ContextWrapper.unbindService(android.content.ServiceConnection)"
     ],
     "1015": [
       "android.content.ContextWrapper.unregisterReceiver(android.content.BroadcastReceiver)"
-    ],
-    "1016": [
-      "android.content.res.Resources.updateConfiguration(android.content.res.Configuration,android.util.DisplayMetrics)"
-    ],
-    "3001": [
-      "android.app.admin.DevicePolicyManager.createAndManageUser(android.content.ComponentName,java.lang.String,android.content.ComponentName,android.os.PersistableBundle,int)"
-    ],
-    "3002": [
-      "android.app.admin.DevicePolicyManager.removeActiveAdmin(android.content.ComponentName)"
     ],
     "3003": [
       "android.app.admin.DevicePolicyManager.resetPassword(java.lang.String,int)"
@@ -55,13 +29,6 @@
     "3004": [
       "android.app.admin.DevicePolicyManager.lockNow()",
       "android.app.admin.DevicePolicyManager.lockNow(int)"
-    ],
-    "3005": [
-      "android.app.admin.DevicePolicyManager.wipeData(int,java.lang.CharSequence)",
-      "android.app.admin.DevicePolicyManager.wipeData(int)"
-    ],
-    "4006": [
-      "android.app.StatusBarManager.setIcon(java.lang.String,int,int,java.lang.String)"
     ],
     "5001": [
       "android.location.LocationManager.requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)",
@@ -71,15 +38,8 @@
     "5002": [
       "android.location.LocationManager.getBestProvider(android.location.Criteria,boolean)"
     ],
-    "5003": [
-      "android.location.LocationManager.getProviders(boolean)"
-    ],
     "5004": [
       "android.location.LocationManager.isProviderEnabled(java.lang.String)"
-    ],
-    "5005": [
-      "android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus.Callback)",
-      "android.location.LocationManager.registerGnssStatusCallback(android.location.GnssStatus.Callback,android.os.Handler)"
     ],
     "5006": [
       "android.location.LocationManager.removeUpdates(android.location.LocationListener)",
@@ -93,16 +53,6 @@
     ],
     "6002": [
       "android.net.ConnectivityManager.getAllNetworkInfo()"
-    ],
-    "6003": [
-      "android.net.ConnectivityManager.getLinkProperties(android.net.Network)"
-    ],
-    "6004": [
-      "android.net.ConnectivityManager.getNetworkInfo(int)",
-      "android.net.ConnectivityManager.getNetworkInfo(android.net.Network)"
-    ],
-    "6005": [
-      "android.net.ConnectivityManager.isActiveNetworkMetered()"
     ],
     "6007": [
       "android.media.AudioManager.requestAudioFocus(android.media.AudioFocusRequest)",
@@ -120,14 +70,11 @@
     "6013": [
       "android.media.AudioManager.setRingerMode(int)"
     ],
-    "7006": [
-      "android.app.KeyguardManager.KeyguardLock.disableKeyguard()"
-    ],
-    "7008": [
-      "android.app.KeyguardManager.KeyguardLock.reenableKeyguard()"
-    ],
     "8005": [
       "android.os.UserManager.getApplicationRestrictions(java.lang.String)"
+    ],
+    "8006": [
+      "android.app.AppOpsManager.setMode(int,int,java.lang.String,int)"
     ],
     "8007001": [
       "android.content.ClipboardManager.setPrimaryClip(android.content.ClipData)"
@@ -135,79 +82,31 @@
     "8007002": [
       "android.content.ClipboardManager.getPrimaryClip()"
     ],
-    "8008": [
-      "android.content.ContextWrapper.enforceCallingPermission(java.lang.String,java.lang.String)"
-    ],
     "8009": [
-      "android.app.WallpaperManager.setBitmap(android.graphics.Bitmap,android.graphics.Rect,boolean,int)",
-      "android.app.WallpaperManager.setBitmap(android.graphics.Bitmap)",
-      "android.app.WallpaperManager.setBitmap(android.graphics.Bitmap,android.graphics.Rect,boolean)",
-      "android.app.WallpaperManager.setResource(int)",
+      "android.app.WallpaperManager.setBitmap(android.graphics.Bitmap,android.graphics.Rect,boolean,int,int)",
       "android.app.WallpaperManager.setResource(int,int)",
-      "android.app.WallpaperManager.setStream(java.io.InputStream)",
-      "android.app.WallpaperManager.setStream(java.io.InputStream,android.graphics.Rect,boolean,int)",
-      "android.app.WallpaperManager.setStream(java.io.InputStream,android.graphics.Rect,boolean)"
+      "android.app.WallpaperManager.setStream(java.io.InputStream,android.graphics.Rect,boolean,int)"
     ],
     "8010": [
-      "android.os.Vibrator.vibrate(long)",
-      "android.os.Vibrator.vibrate(long[],int)",
       "android.os.Vibrator.vibrate(android.os.VibrationEffect,android.media.AudioAttributes)",
       "android.os.Vibrator.vibrate(long,android.media.AudioAttributes)",
-      "android.os.Vibrator.vibrate(android.os.VibrationEffect)",
       "android.os.Vibrator.vibrate(long[],int,android.media.AudioAttributes)"
     ],
     "8011": [
       "android.app.NotificationManager.notifyAsUser(java.lang.String,int,android.app.Notification,android.os.UserHandle)"
     ],
     "8012": [
-      "android.content.pm.PackageInstaller.uninstall(android.content.pm.VersionedPackage,android.content.IntentSender)",
-      "android.content.pm.PackageInstaller.uninstall(java.lang.String,android.content.IntentSender)"
+      "android.content.pm.PackageInstaller.uninstall(android.content.pm.VersionedPackage,int,android.content.IntentSender)"
     ],
     "14005": [
       "android.telephony.SmsManager.sendDataMessage(java.lang.String,java.lang.String,short,byte[],android.app.PendingIntent,android.app.PendingIntent)"
     ],
-    "14006": [
-      "android.telephony.SmsManager.sendDataMessageWithSelfPermissions(java.lang.String,java.lang.String,short,byte[],android.app.PendingIntent,android.app.PendingIntent)"
-    ],
     "14007": [
       "android.telephony.SmsManager.sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)"
-    ],
-    "14008": [
-      "android.telephony.SmsManager.sendTextMessageWithSelfPermissions(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent,boolean)"
-    ],
-    "14009": [
-      "android.telephony.SmsManager.injectSmsPdu(byte[],java.lang.String,android.app.PendingIntent)"
-    ],
-    "14010": [
-      "android.telephony.SmsManager.sendMultipartTextMessage(java.lang.String,java.lang.String,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList)"
-    ],
-    "14013": [
-      "android.telephony.SmsManager.enableCellBroadcastRange(int,int,int)"
-    ],
-    "14014": [
-      "android.telephony.SmsManager.disableCellBroadcastRange(int,int,int)"
-    ],
-    "14015": [
-      "android.telephony.SmsManager.isImsSmsSupported()"
     ],
     "14017": [
       "android.telephony.SmsManager.getDefaultSmsSubscriptionId()",
       "android.telephony.SmsManager.getSubscriptionId()"
-    ],
-    "14018": [
-      "android.telephony.SmsManager.getImsSmsFormat()"
-    ],
-    "14019": [
-      "android.telephony.SmsManager.isSMSPromptEnabled()"
-    ],
-    "14020": [
-      "android.telephony.SmsManager.sendStoredTextMessage(android.net.Uri,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)"
-    ],
-    "14021": [
-      "android.telephony.SmsManager.sendStoredMultipartTextMessage(android.net.Uri,java.lang.String,java.util.ArrayList,java.util.ArrayList)"
-    ],
-    "14022": [
-      "android.telephony.SmsManager.createAppSpecificSmsToken(android.app.PendingIntent)"
     ],
     "15001": [
       "android.telephony.SubscriptionManager.getSimStateForSlotIndex(int)"
@@ -236,35 +135,25 @@
       "android.app.Dialog.setCanceledOnTouchOutside(boolean)"
     ],
     "17001": [
-      "android.telephony.SmsMessage.createFromPdu(byte[])",
       "android.telephony.SmsMessage.createFromPdu(byte[],java.lang.String)"
-    ],
-    "17002": [
-      "android.telephony.SmsMessage.getMessageBody()"
     ],
     "17003": [
       "android.telephony.SmsMessage.getDisplayMessageBody()"
-    ],
-    "17004": [
-      "android.telephony.SmsMessage.getOriginatingAddress()"
     ],
     "17005": [
       "android.telephony.SmsMessage.getDisplayOriginatingAddress()"
     ],
     "18001": [
-      "android.telephony.TelephonyManager.endCall()",
       "android.telecom.TelecomManager.endCall()"
     ],
     "18002": [
       "android.telephony.TelephonyManager.getCallState()"
     ],
     "18003": [
-      "android.telephony.TelephonyManager.answerRingingCall()",
       "android.telecom.TelecomManager.acceptRingingCall()",
       "android.telecom.TelecomManager.acceptRingingCall(int)"
     ],
     "18004": [
-      "android.telephony.TelephonyManager.silenceRinger()",
       "android.telecom.TelecomManager.silenceRinger()"
     ],
     "19001": [
@@ -281,7 +170,6 @@
       "android.telephony.TelephonyManager.getSimCountryIso()"
     ],
     "20003": [
-      "android.hardware.display.DisplayManager.createVirtualDisplay(java.lang.String,int,int,int,android.view.Surface,int)",
       "android.hardware.display.DisplayManager.createVirtualDisplay(java.lang.String,int,int,int,android.view.Surface,int,android.hardware.display.VirtualDisplay.Callback,android.os.Handler)"
     ],
     "20004": [

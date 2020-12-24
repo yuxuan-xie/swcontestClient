@@ -20,7 +20,6 @@ public class HookSetMode extends AbstractHook {
         try {
             className = "";
             methodName = "setMode";
-            hookclass = classloader.loadClass(className);
         } catch (Exception e) {
             SWlog.e(TAG, "fail to find xxx.xxx.xxx", e);
             return;

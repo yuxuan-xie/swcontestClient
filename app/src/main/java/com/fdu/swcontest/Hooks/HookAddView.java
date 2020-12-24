@@ -3,10 +3,12 @@ package com.fdu.swcontest.Hooks;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 
 import com.fdu.swcontest.Util.SWlog;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 import static com.fdu.swcontest.Main.TAG;
@@ -20,8 +22,7 @@ public class HookAddView extends AbstractHook{
     public void doHook() {
         try {
             className = "";
-            methodName = "";
-            hookclass = classloader.loadClass(className);
+            methodName = "addView";
         } catch (Exception e) {
             SWlog.e(TAG,"fail to find xxx.xxx.xxx", e);
             return;
@@ -33,6 +34,9 @@ public class HookAddView extends AbstractHook{
                 super.beforeHookedMethod(param);
                 methodId = 0;
                 ViewGroup.LayoutParams arg = (ViewGroup.LayoutParams)param.args[1];
+//                if(arg.type == 2002 || arg.tyqpe == 2010 || arg.type == 2038){
+//
+//                }
 
 
 
@@ -42,7 +46,7 @@ public class HookAddView extends AbstractHook{
         };
 
         SWlog.d("Handling:[7005]");
-        XposedHelpers.findAndHookMethod(ViewGroup.class, methodName, View.class, ViewGroup.LayoutParams.class, xc_methodHook);
+        XposedBridge.hookAllMethods(ViewManager.class, methodName, xc_methodHook);
         SWlog.d("Registered:[7005]");
     }
 

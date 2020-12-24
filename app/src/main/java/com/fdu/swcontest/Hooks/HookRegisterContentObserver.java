@@ -26,7 +26,6 @@ public class HookRegisterContentObserver extends AbstractHook{
         try {
             className = "";
             methodName = "registerContentObserver";
-            hookclass = classloader.loadClass(className);
         } catch (Exception e) {
             SWlog.e(TAG, "fail to find xxx.xxx.xxx", e);
             return;
@@ -37,34 +36,25 @@ public class HookRegisterContentObserver extends AbstractHook{
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
 
-                String path = ((Uri)param.args[0]).getPath();
-                assert path != null;
-                if(path.contains("sms")){
-                    methodId = 15007001;
-                }
-                else if(path.contains("siminfo")){
-                    methodId = 15007002;
-                }
-                else if(path.contains("com.android.contacts")){
-                    methodId = 15007003;
-                }
-                else if(path.contains("bookmarks")){
-                    methodId = 15007004;
-                }
-                else if(path.contains("media")){
-                    methodId = 15007005;
-                }
-                else{
-                    methodId = 15007;
-                }
+                String path = ((Uri) param.args[0]).toString();
 
-                SWlog.d("methodId: " + methodId);
-                updateDB();
+                if (!path.contains("content://com.fdu.swcontentprovider/api")) {
+                    if (path.contains("content://sms")) {
+                        methodId = 15007001;
+                    } else if (path.contains("content://call_log") || path.contains("vnd.android.cursor.dir/contact_directories") || path.contains("com.android.contacts") || path.contains("content://icc/adn")) {
+                        methodId = 15007003;
+                    } else {
+                        methodId = 15007;
+                    }
+
+                    SWlog.d("methodId: " + methodId);
+                    updateDB();
+                }
             }
         };
 
         SWlog.d("Handling:[15007]");
-        XposedHelpers.findAndHookMethod(ContentResolver.class, methodName, Uri.class, Boolean.class, ContentObserver.class, xc_methodHook);
+        XposedHelpers.findAndHookMethod(ContentResolver.class, methodName, Uri.class, boolean.class, ContentObserver.class, xc_methodHook);
         SWlog.d("Registered:[15007]");
     }
 }

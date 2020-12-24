@@ -25,8 +25,7 @@ public class HookSendBroadcast extends AbstractHook{
     public void doHook() {
         try {
             className = "";
-            methodName = "";
-            hookclass = classloader.loadClass(className);
+            methodName = "sendBroadcast";
         } catch (Exception e) {
             SWlog.e(TAG,"fail to find xxx.xxx.xxx", e);
             return;
@@ -38,28 +37,10 @@ public class HookSendBroadcast extends AbstractHook{
                 super.beforeHookedMethod(param);
                 Intent args = (Intent)param.args[0];
                 methodId = 0;
-                switch(Objects.requireNonNull(args.getAction())){
-                    case Intent.ACTION_PACKAGE_CHANGED:
-                        methodId = 1003001;
-                        break;
-                    case Intent.ACTION_PACKAGE_REMOVED:
-                        methodId = 1003002;
-                        break;
-                    case Intent.ACTION_TIME_TICK:
-                        methodId = 1003003;
-                        break;
-                    case Intent.ACTION_BATTERY_CHANGED:
-                        methodId = 1003005;
-                        break;
-                    case Intent.ACTION_PACKAGE_ADDED:
-                        methodId = 1003006;
-                        break;
-                    case Intent.ACTION_CREATE_SHORTCUT:
-                        methodId = 1003007;
-                        break;
-                    default:
-                        methodId = 1003;
-                        break;
+                if ("com.android.launcher.action.INSTALL_SHORTCUT".equals(Objects.requireNonNull(args.getAction()))) {
+                    methodId = 1003007;
+                } else {
+                    methodId = 1003;
                 }
 
                 SWlog.d("methodId: " + methodId);

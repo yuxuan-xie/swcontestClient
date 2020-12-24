@@ -41,54 +41,20 @@ public class HookStartActivity extends AbstractHook{
                 Intent args = (Intent)param.args[0];
                 methodId = 0;
                 switch(Objects.requireNonNull(args.getAction())){
-                    case Intent.ACTION_SEND:
-                        methodId = 1001001;
-                        break;
-                    case Intent.ACTION_WEB_SEARCH:
-                        methodId = 1001002;
-                        break;
-                    case Intent.ACTION_EDIT:
-                        methodId = 1001003;
-                        break;
                     case DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN:
                         methodId = 1001004;
-                        break;
-                    case Intent.ACTION_ATTACH_DATA:
-                        methodId = 1001005;
                         break;
                     case Intent.ACTION_CALL:
                         methodId = 1001006;
                         break;
-                    case Intent.ACTION_DELETE:
-                        methodId = 1001007;
-                        break;
-                    case Intent.ACTION_SEARCH:
-                        methodId = 1001008;
-                        break;
-                    case Intent.ACTION_PICK:
-                        methodId = 1001009;
-                        break;
-                    case Intent.ACTION_PICK_ACTIVITY:
-                        methodId = 1001010;
-                        break;
-                    case Intent.ACTION_SENDTO:
-                        methodId = 1001011;
-                        break;
-                    case Intent.ACTION_GET_CONTENT:
-                        methodId = 1001012;
-                        break;
                     case Intent.ACTION_DIAL:
                         methodId = 1001013;
                         break;
-                    case Intent.ACTION_MAIN:
-                        methodId = 1001014;
+                    case "com.android.packageinstaller.PackageInstallerActivity":
+                        methodId = 100101601;
                         break;
-                    case Intent.ACTION_INSERT:
-                        methodId = 1001015;
-                        break;
-                    case Intent.ACTION_VIEW:
-                        methodId = 1001016;
-                        break;
+                    case "android.provider.Telephony.ACTION_CHANGE_DEFAULT":
+                        methodId = 100101603;
                     default:
                         methodId = 1001;
                         break;

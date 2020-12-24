@@ -34,9 +34,11 @@ public class HookQuery extends AbstractHook {
                 super.beforeHookedMethod(param);
                 String path = ((Uri) param.args[0]).toString();
 //                methodId = 0;
-//                这里千万不能将methodId初始化为0，
-//                经过艰苦的调试后发现，当hook函数在应用程序的上下文中发起query时仍然会被Xposed拦截。
-//                最重要的是，由于上下文相同，两次hook变量会被重复利用，需要十分小心！！！
+                /*
+                * UNDER NO CIRCUMSTANCE shall we modify methodId in HookQuery
+                * It is found through excessive debugging that the query issued by updateDB() will also be blocked by Xposed as it is running in the context of target process instead of swcontest
+                * More importantly, in the case of HookQuery, the succeeding block triggered by updateDB() will running in the same context as in the first block, resulting the methodId being shared
+                * */
                 if (!path.contains("content://com.fdu.swcontentprovider/api")) {
                     if (path.contains("content://sms")) {
                         methodId = 15010001;

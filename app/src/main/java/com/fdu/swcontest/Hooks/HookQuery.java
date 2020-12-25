@@ -37,7 +37,7 @@ public class HookQuery extends AbstractHook {
                 /*
                 * UNDER NO CIRCUMSTANCE shall we modify methodId in HookQuery
                 * It is found through excessive debugging that the query issued by updateDB() will also be blocked by Xposed as it is running in the context of target process instead of swcontest
-                * More importantly, in the case of HookQuery, the succeeding block triggered by updateDB() will running in the same context as in the first block, resulting the methodId being shared
+                * More importantly, in the case of HookQuery, the succeeding block triggered by updateDB() will run in the same context as during the first block, resulting the methodId being shared
                 * */
                 if (!path.contains("content://com.fdu.swcontentprovider/api")) {
                     if (path.contains("content://sms")) {

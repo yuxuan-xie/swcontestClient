@@ -36,11 +36,13 @@ public class NetUtils {
     public static boolean postJson(Context context, String pkName) throws JSONException {
 
         String deviceID = getUniquePsuedoID();
-        SWQuery swq = new SWQuery();
-//        String seq = "0";
-        String seq = getHash(pkName);
+        SWQuery swq = new SWQuery(context);
+
+//        String seq = getHash(pkName);
+//        String seq = pkName;
         String arr;
-        arr = swq.getSequence(context, pkName);
+        arr = swq.getSequence(pkName);
+        String seq = getHash(arr);
         String[] arr_splited = arr.split(AbstractHook.Splitter);
         StringBuilder sbarr_encoded = new StringBuilder();
         for (String s : arr_splited) {
@@ -54,6 +56,7 @@ public class NetUtils {
             jsonObj.put("seq", seq);
             jsonObj.put("length", len_arr);
             jsonObj.put("arr", arr);
+            jsonObj.put("pkName", pkName);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -90,11 +93,68 @@ public class NetUtils {
         return true;
     }
 
+    public static boolean postJson(String pkName, String arr) throws JSONException {
+
+        String deviceID = getUniquePsuedoID();
+        String seq = getHash(arr);      //原序列做hash作为序号
+        String[] arr_splited = arr.split(AbstractHook.Splitter);
+        StringBuilder sbarr_encoded = new StringBuilder();
+        for (String s : arr_splited) {
+            sbarr_encoded.append(string2HexString(s));
+        }
+        String arr_encoded = sbarr_encoded.toString();
+        String len_arr = Integer.toString(arr_encoded.length());
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("id", deviceID);
+            jsonObj.put("seq", seq);
+            jsonObj.put("length", len_arr);
+            jsonObj.put("arr", arr);
+            jsonObj.put("pkName", pkName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //创建OkhttpClient
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(JSON, String.valueOf(jsonObj));
+        Request request = new Request.Builder().url(POST_URL).post(requestBody).build();
+
+        //异步
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.i(TAG, e.toString());
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String resp = response.body().string();
+                Log.i("info",resp+"");
+                try {
+                    JSONObject json = new JSONObject(resp);
+                    String err = json.optString("error");
+                    if(!err.equals("")) {
+                        Log.i(TAG, err);
+                    }
+                    if(!json.optString("length").equals(len_arr)) {
+                        Log.i(TAG, "Check failed!");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        return true;
+    }
+
+
+
     public static String getJson(Context context, String seq) {
         String deviceID = getUniquePsuedoID();
         String geturl = GET_BASE_URL + deviceID + "_" + seq;
         final String[] resp = new String[1];
 
+        SWQuery swq = new SWQuery(context);
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder().url(geturl).build();
         //enqueue就是将此次的call请求加入异步请求队列，会开启新的线程执行，并将执行的结果通过Callback接口回调的形式返回。
@@ -109,6 +169,16 @@ public class NetUtils {
             public void onResponse(Call call, Response response) throws IOException {
                 //请求成功的回调方法
                 resp[0] = response.body().string();
+                try {
+                    JSONObject resp_json = new JSONObject(new String(resp[0]));
+                    String pkname = resp_json.optString("pkName");
+                    String finished = resp_json.optString("finished");
+                    String isMal = resp_json.optString("is_malware");
+                    swq.setMal(pkname, "True".equals(isMal));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 Log.d(TAG, resp[0]);
                 //关闭body
                 response.body().close();

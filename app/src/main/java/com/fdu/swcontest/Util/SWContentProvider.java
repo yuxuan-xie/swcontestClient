@@ -3,6 +3,7 @@ package com.fdu.swcontest.Util;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -83,8 +84,20 @@ public class SWContentProvider extends ContentProvider {
     * */
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String selection, @Nullable String[] selectionArgs) {
-        db.update(getTableName(uri), contentValues, selection, selectionArgs);
-        context.getContentResolver().notifyChange(uri, null);
+        assert contentValues != null;
+        int sequence_length = contentValues.getAsInteger("sequence_length");
+        if(sequence_length >= 256){
+            String sequence = contentValues.getAsString("sequence");
+            assert selectionArgs != null;
+            String packageName = selectionArgs[0];
+//            NetUtils.postJson(packageName, sequence);
+            contentValues.put("sequence", "");
+            contentValues.put("sequence_length", 0);
+            db.update(getTableName(uri), contentValues, selection, selectionArgs);
+        }else {
+            db.update(getTableName(uri), contentValues, selection, selectionArgs);
+            context.getContentResolver().notifyChange(uri, null);
+        }
 
         return 0;
     }

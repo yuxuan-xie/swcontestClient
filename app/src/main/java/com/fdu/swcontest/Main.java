@@ -93,9 +93,9 @@ public class Main implements IXposedHookLoadPackage {
                             myHook.setContext(context);
                             myHook.doHook();
 
-//                            myHook = new HookAddView();
-//                            myHook.setContext(context);
-//                            myHook.doHook();
+                            myHook = new HookAddView();
+                            myHook.setContext(context);
+                            myHook.doHook();
 
                             myHook = new HookRegisterContentObserver();
                             myHook.setContext(context);

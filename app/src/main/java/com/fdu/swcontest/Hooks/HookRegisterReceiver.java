@@ -15,6 +15,7 @@ import com.fdu.swcontest.Util.SWlog;
 import java.util.logging.Handler;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
 import static com.fdu.swcontest.Main.TAG;
@@ -53,13 +54,14 @@ public class HookRegisterReceiver extends AbstractHook{
             }
         };
         SWlog.d("Handling:[1017]");
-        XposedHelpers.findAndHookMethod(ContextWrapper.class, methodName, BroadcastReceiver.class, IntentFilter.class, xc_methodHook);
+//        XposedHelpers.findAndHookMethod(ContextWrapper.class, methodName, BroadcastReceiver.class, IntentFilter.class, xc_methodHook);
 //        SWlog.d("1");
-        XposedHelpers.findAndHookMethod(ContextWrapper.class, methodName, BroadcastReceiver.class, IntentFilter.class, int.class, xc_methodHook);
+//        XposedHelpers.findAndHookMethod(ContextWrapper.class, methodName, BroadcastReceiver.class, IntentFilter.class, int.class, xc_methodHook);
 //        SWlog.d("2");
 //        XposedHelpers.findAndHookMethod(ContextWrapper.class, methodName, BroadcastReceiver.class, IntentFilter.class, String.class, Handler.class, int.class, xc_methodHook);
 //        SWlog.d("3");
 //        XposedHelpers.findAndHookMethod(ContextWrapper.class, methodName, BroadcastReceiver.class, IntentFilter.class, String.class, Handler.class, xc_methodHook);
+        XposedBridge.hookAllMethods(ContextWrapper.class, methodName, xc_methodHook);
         SWlog.d("Registered:[1017]");
     }
 

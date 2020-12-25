@@ -30,7 +30,7 @@ public class HookSetMode extends AbstractHook {
                 super.beforeHookedMethod(param);
                 int arg = (int)param.args[0];
                 // The code of those OPSTRs was obtained by invoking AppOpsManager.strOpTpOp(),
-                // which is also noted as @testapi and was called via reflection during testinge
+                // which is also noted as @testapi and was called via reflection during testing
                 if(arg == 14 || arg == 16 || arg == 20){
                     methodId = 8006001;
                 }

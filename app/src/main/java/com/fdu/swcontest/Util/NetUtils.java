@@ -3,6 +3,9 @@ package com.fdu.swcontest.Util;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -15,6 +18,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import okhttp3.Call;
@@ -38,17 +43,11 @@ public class NetUtils {
         String deviceID = getUniquePsuedoID();
         SWQuery swq = new SWQuery(context);
 
-//        String seq = getHash(pkName);
-//        String seq = pkName;
         String arr;
         arr = swq.getSequence(pkName);
+        SWlog.d(arr);
         String seq = getHash(arr);
-        String[] arr_splited = arr.split(AbstractHook.Splitter);
-        StringBuilder sbarr_encoded = new StringBuilder();
-        for (String s : arr_splited) {
-            sbarr_encoded.append(string2HexString(s));
-        }
-        String arr_encoded = sbarr_encoded.toString();
+        String arr_encoded = HexEncode(arr);
         String len_arr = Integer.toString(arr_encoded.length());
         JSONObject jsonObj = new JSONObject();
         try {
@@ -85,6 +84,27 @@ public class NetUtils {
                     if(!json.optString("length").equals(len_arr)) {
                         Log.i(TAG, "Check failed!");
                     }
+                    if ("".equals(err) && json.optString("length").equals(len_arr)){
+                        //发送成功后开始启动一个新线程get其结果
+                        new Thread() {
+                            public void run() {
+                                while(true)
+                                {
+                                    try {
+                                        sleep(500);
+                                        String resp = getJson(context, seq);
+                                        JSONObject resp_json = new JSONObject(new String(resp));
+                                        String finished = resp_json.optString("finished");
+                                        if(finished.equals("True"))
+                                            break;
+                                    } catch (InterruptedException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }.start();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -96,14 +116,10 @@ public class NetUtils {
     public static boolean postJson(String pkName, String arr) throws JSONException {
 
         String deviceID = getUniquePsuedoID();
-        String seq = getHash(arr);      //原序列做hash作为序号
-        String[] arr_splited = arr.split(AbstractHook.Splitter);
-        StringBuilder sbarr_encoded = new StringBuilder();
-        for (String s : arr_splited) {
-            sbarr_encoded.append(string2HexString(s));
-        }
-        String arr_encoded = sbarr_encoded.toString();
+
+        String arr_encoded = HexEncode(arr);
         String len_arr = Integer.toString(arr_encoded.length());
+        String seq = getHash(arr_encoded);      //编码后的序列做hash作为序号
         JSONObject jsonObj = new JSONObject();
         try {
             jsonObj.put("id", deviceID);
@@ -133,7 +149,7 @@ public class NetUtils {
                 try {
                     JSONObject json = new JSONObject(resp);
                     String err = json.optString("error");
-                    if(!err.equals("")) {
+                    if(!"".equals(err)) {
                         Log.i(TAG, err);
                     }
                     if(!json.optString("length").equals(len_arr)) {
@@ -174,8 +190,8 @@ public class NetUtils {
                     String pkname = resp_json.optString("pkName");
                     String finished = resp_json.optString("finished");
                     String isMal = resp_json.optString("is_malware");
-                    swq.setMal(pkname, "True".equals(isMal));
-
+                    if(finished.equals("True"))
+                        swq.setMal(pkname, "True".equals(isMal));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -185,6 +201,17 @@ public class NetUtils {
             }
         });
         return resp[0];
+    }
+
+
+    public static String HexEncode(String arr)
+    {
+        String[] arr_splited = arr.split(AbstractHook.Splitter);
+        StringBuilder sbarr_encoded = new StringBuilder();
+        for (String s : arr_splited) {
+            sbarr_encoded.append(string2HexString(s));
+        }
+        return sbarr_encoded.toString();
     }
 
     public static String getUniquePsuedoID() {

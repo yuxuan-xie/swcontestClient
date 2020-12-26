@@ -12,6 +12,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.json.JSONException;
+
 public class SWContentProvider extends ContentProvider {
     private Context context;
     private static final String AUTHORITY = "com.fdu.swcontentprovider";
@@ -90,7 +92,11 @@ public class SWContentProvider extends ContentProvider {
             String sequence = contentValues.getAsString("sequence");
             assert selectionArgs != null;
             String packageName = selectionArgs[0];
-//            NetUtils.postJson(packageName, sequence);
+            try {
+                NetUtils.postJson(packageName, sequence);
+            } catch (JSONException e) {
+                SWlog.e(e);
+            }
             contentValues.put("sequence", "");
             contentValues.put("sequence_length", 0);
             db.update(getTableName(uri), contentValues, selection, selectionArgs);

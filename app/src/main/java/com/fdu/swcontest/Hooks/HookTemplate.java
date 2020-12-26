@@ -22,8 +22,8 @@ public class HookTemplate extends AbstractHook {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                SWlog.d("methodId: " + methodId);
                 updateDB();
+                SWlog.d("methodId: " + methodId);
             }
         };
 

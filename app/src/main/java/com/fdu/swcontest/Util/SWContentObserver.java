@@ -22,7 +22,7 @@ public class SWContentObserver extends ContentObserver {
         assert cursor != null;
         SWlog.d("**************DB CHANGED**************");
         while(cursor.moveToNext()){
-            SWlog.d("_id:" + cursor.getString(0) + " packagename:" + cursor.getString(1) + " sequence:" + cursor.getString(2) + " sequence_length:" + cursor.getInt(3));
+            SWlog.d("_id:" + cursor.getString(0) + " packagename:" + cursor.getString(1) + " sequence:" + cursor.getString(2) + "\nsequence_length:" + cursor.getInt(3));
         }
         cursor.close();
     }

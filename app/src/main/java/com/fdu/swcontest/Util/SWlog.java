@@ -5,8 +5,8 @@ import android.util.Log;
 
 
 public class SWlog {
-    private static boolean ENABLE = true;
-    private static String tag = "SWContest";
+    private static final boolean ENABLE = true;
+    private static final String tag = "SWContest";
 
     public static void d(String msg){
         if(!ENABLE){

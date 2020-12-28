@@ -18,7 +18,7 @@ public class ApkUtils {
     public static class SWAppInfo{
         public Drawable icon;
         public String appName;
-        public Boolean isMal;
+        public boolean isMal;
     }
 
     public static List<SWAppInfo> scan(Context context){
@@ -26,14 +26,17 @@ public class ApkUtils {
         ContentResolver contentResolver = context.getContentResolver();
         List<SWAppInfo> appInfos = new ArrayList<SWAppInfo>();
         try{
-            List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
+            List<PackageInfo> packageInfos = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
             for(PackageInfo packageInfo : packageInfos){
                 SWAppInfo swAppInfo = new SWAppInfo();
-                swAppInfo.appName = packageInfo.packageName;
+
+                swAppInfo.appName = packageInfo.applicationInfo.loadLabel(packageManager).toString();
+
                 if(packageInfo.applicationInfo.loadIcon(packageManager) == null){
                     continue;
                 }
                 swAppInfo.icon = packageInfo.applicationInfo.loadIcon(packageManager);
+
                 Cursor cursor = contentResolver.query(AbstractHook.uri_sequence, new String[]{"isMal"},
                         "packagename=?", new String[]{packageInfo.packageName}, null);
                 assert cursor != null;
@@ -44,6 +47,7 @@ public class ApkUtils {
                     swAppInfo.isMal = cursor.getInt(0) > 0;
                 }
                 cursor.close();
+
                 appInfos.add(swAppInfo);
             }
         }catch(Exception e){

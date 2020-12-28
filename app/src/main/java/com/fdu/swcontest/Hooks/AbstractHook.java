@@ -17,7 +17,7 @@ public abstract class AbstractHook {
     int methodId;
     String signature;
     public static String Splitter = ",";
-    public static Uri uri_test = Uri.parse("content://com.fdu.swcontentprovider/test");
+//    public static Uri uri_test = Uri.parse("content://com.fdu.swcontentprovider/test");
     public static Uri uri_sequence = Uri.parse("content://com.fdu.swcontentprovider/api");
 
     public abstract void doHook() throws ClassNotFoundException;

@@ -93,7 +93,7 @@ public class SWContentProvider extends ContentProvider {
             assert selectionArgs != null;
             String packageName = selectionArgs[0];
             try {
-                NetUtils.postJson(packageName, sequence);
+                NetUtils.postJson(context, packageName);
             } catch (JSONException e) {
                 SWlog.e(e);
             }

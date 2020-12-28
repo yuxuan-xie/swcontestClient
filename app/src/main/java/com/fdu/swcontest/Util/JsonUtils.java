@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 public class JsonUtils {
     /**
      * Import content from Json file
-     * @param fileName
+     * @param fileName relative path of the json file
      * @return
      */
     public static String getJson(String fileName){

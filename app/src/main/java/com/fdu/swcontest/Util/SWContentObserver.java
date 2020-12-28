@@ -9,7 +9,7 @@ import android.os.Handler;
 import com.fdu.swcontest.Hooks.AbstractHook;
 
 public class SWContentObserver extends ContentObserver {
-    private Context myContext;
+    private final Context myContext;
 
     public SWContentObserver(Context context) {
         super(new Handler());

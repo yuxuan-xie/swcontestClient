@@ -3,7 +3,9 @@ package com.fdu.swcontest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         appInfos.toArray(appArray);
 
         SWAdapter swAdapter = new SWAdapter(this, R.layout.list_view, appArray);
+        
         ListView listView = (ListView)findViewById(R.id.sw_list_view);
         listView.setAdapter(swAdapter);
 
@@ -76,9 +79,5 @@ public class MainActivity extends AppCompatActivity {
 //                builder.create().show();
 //            }
 //        });
-
-
-
     }
-
 }

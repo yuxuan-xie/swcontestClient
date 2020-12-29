@@ -1,6 +1,7 @@
 package com.fdu.swcontest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -29,7 +30,11 @@ import com.fdu.swcontest.Util.SWlog;
 import java.util.Iterator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+
+    private SWAdapter swAdapter;
+    private ListView listView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +45,19 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         contentResolver.registerContentObserver(AbstractHook.uri_sequence, true, contentObserver);
 
+
         List<ApkUtils.SWAppInfo> appInfos = ApkUtils.scan(getApplicationContext());
         ApkUtils.SWAppInfo[] appArray = new ApkUtils.SWAppInfo[appInfos.size()];
         appInfos.toArray(appArray);
 
-        SWAdapter swAdapter = new SWAdapter(this, R.layout.list_view, appArray);
-        
-        ListView listView = (ListView)findViewById(R.id.sw_list_view);
+
+        swAdapter = new SWAdapter(this, R.layout.list_view, appArray);
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
+        listView = (ListView)findViewById(R.id.sw_list_view);
         listView.setAdapter(swAdapter);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
+
 
 //        ApkUtils.SWAppInfo[] appArray = (ApkUtils.SWAppInfo[])appInfos.toArray();
 //        String[] nItems = new String[appInfos.size()];
@@ -79,5 +89,17 @@ public class MainActivity extends AppCompatActivity {
 //                builder.create().show();
 //            }
 //        });
+    }
+
+    @Override
+    public void onRefresh() {
+        List<ApkUtils.SWAppInfo> appInfos = ApkUtils.scan(getApplicationContext());
+        ApkUtils.SWAppInfo[] appArray = new ApkUtils.SWAppInfo[appInfos.size()];
+        appInfos.toArray(appArray);
+
+        swAdapter = new SWAdapter(this, R.layout.list_view, appArray);
+        listView.setAdapter(swAdapter);
+        
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

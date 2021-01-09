@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fdu.swcontest">
+    package="com.fronzii.swcontest">
 
     <application
         android:allowBackup="true"
@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.fdu.swcontest.MainActivity">
+        <activity android:name="com.fronzii.swcontest.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +18,8 @@
         </activity>
 
         <provider
-                android:authorities="com.fdu.swcontentprovider"
-                android:name="com.fdu.swcontest.Util.SWContentProvider"
+                android:authorities="com.fronzii.swcontentprovider"
+                android:name="com.fronzii.swcontest.Util.SWContentProvider"
                 android:exported="true"
             />
 
